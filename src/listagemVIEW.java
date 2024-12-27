@@ -176,7 +176,9 @@ public class listagemVIEW extends javax.swing.JFrame {
        prod.setId(Integer.parseInt(id));
         
        produtos.conexaoMySQL();
+       
        produtos.vender(prod);
+       
        produtos.fecharConexao();
        
        dispose();
