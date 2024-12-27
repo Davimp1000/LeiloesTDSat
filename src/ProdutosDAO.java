@@ -135,11 +135,11 @@ try {
             
             ps.executeUpdate();
               
-          
+            JOptionPane.showMessageDialog(null,"CADASTRO REALIZADO COM SUCESSO!");
         }
         catch(SQLException sqle)
         {
-             ;
+               JOptionPane.showMessageDialog(null,"NÃO CONSEGUIMOS REALIZAR O CADASTRO");
         }
         
      
