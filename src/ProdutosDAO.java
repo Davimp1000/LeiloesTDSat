@@ -26,6 +26,7 @@ public class ProdutosDAO {
     ResultSet resultset;
     
     private DefaultTableModel model;
+    private DefaultTableModel model1;
   
     
     
@@ -230,7 +231,7 @@ try {
     
     
     //MÉTODO DE LISTAR PRODUTOS VENDIDOS
-    public void listarVendidos()
+    public void listarVendidos( DefaultTableModel model1)
     {
          String sql = "select*from produtos where status = 'Vendido'";
          
@@ -247,7 +248,7 @@ try {
               int valor =    rs.getInt("valor");
               String status =    rs.getString("status");
                         
-
+              model1.addRow(new Object[] {id,nome,valor,status});
               }
          }
          catch(SQLException ex)
