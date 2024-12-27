@@ -26,6 +26,7 @@ public class ProdutosDAO {
     ResultSet resultset;
     
     private DefaultTableModel model;
+    private DefaultTableModel model1;
   
     
     
@@ -191,6 +192,81 @@ try {
             
     
    
+    
+    
+    
+    
+    
+    //MÉTODO DE VENDER PRODUTO E ATUALIZAR O STATUS DELE
+    public void vender(ProdutosDTO produto)
+    {
+         PreparedStatement ps = null;
+       
+       
+        
+        String sql = "update produtos set status = 'Vendido' where id = ?";
+        
+        try
+        {
+              ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, produto.getId());
+            
+             
+            ps.executeUpdate();
+              
+            JOptionPane.showMessageDialog(null,"VENDA REALIZADA!");
+        }
+        catch(SQLException sqle)
+        {
+            JOptionPane.showMessageDialog(null,"NÃO CONSEGUIMOS REALIZAR A VENDA");
+        }
+           
+    }
+    
+    
+    
+    
+    
+    
+    
+    //MÉTODO DE LISTAR PRODUTOS VENDIDOS
+    public void listarVendidos( DefaultTableModel model1)
+    {
+         String sql = "select*from produtos where status = 'Vendido'";
+         
+         try
+         {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            
+          
+              while(rs.next())
+              {
+              int id =     rs.getInt("id");
+              String nome =    rs.getString("nome");
+              int valor =    rs.getInt("valor");
+              String status =    rs.getString("status");
+                        
+              model1.addRow(new Object[] {id,nome,valor,status});
+              }
+         }
+         catch(SQLException ex)
+         {
+              JOptionPane.showMessageDialog(null,"Ocorreu um erro");
+         }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
         

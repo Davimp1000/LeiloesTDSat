@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -159,19 +160,39 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        String id = id_produto_venda.getText();
+
+       ProdutosDTO prod = new ProdutosDTO();
+       ProdutosDAO produtos = new ProdutosDAO();
+       
+       if(id_produto_venda.getText().isEmpty())
+       {
+           JOptionPane.showMessageDialog(null, "Você deve inserir um ID");
+       }
+       else
+       {
+       
+
+       String id = id_produto_venda.getText();
+       prod.setId(Integer.parseInt(id));
         
-        ProdutosDAO produtosdao = new ProdutosDAO();
-        
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        listarProdutos();
+       produtos.conexaoMySQL();
+       
+       produtos.vender(prod);
+       
+       produtos.fecharConexao();
+       
+       dispose();
+       }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
 
+        
+        
+        
 
-        //vendasVIEW vendas = new vendasVIEW(); 
-        //vendas.setVisible(true);
+        Vendas vendas = new Vendas(); 
+        vendas.setVisible(true);
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
