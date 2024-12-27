@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 
 
 public class ProdutosDAO {
@@ -23,7 +24,9 @@ public class ProdutosDAO {
     Connection con;
     
     ResultSet resultset;
-    ArrayList<ProdutosDTO> listagem = new ArrayList<>();
+    
+    private DefaultTableModel model;
+  
     
     
     
@@ -152,15 +155,42 @@ try {
     
     
     
+    //MÉTODO DE LISTAR PRODUTOS
     
-    
-    
-    
-    public ArrayList<ProdutosDTO> listarProdutos(){
+    public void listar(DefaultTableModel model)
+    {
+       
+        String sql = "select*from produtos";
         
-        return listagem;
+        try
+        {
+            
+            
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            
+          
+              while(rs.next())
+              {
+             int id =     rs.getInt("id");
+             String nome =    rs.getString("nome");
+             int valor =    rs.getInt("valor");
+             String status =    rs.getString("status");
+                        
+                  model.addRow(new Object[] {id,nome,valor,status});
+              }
+              
+             
+        }
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null,"Ocorreu um erro");
+        }
+         
     }
+            
     
+   
     
     
         
