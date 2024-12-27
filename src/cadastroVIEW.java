@@ -1,3 +1,7 @@
+
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -141,17 +145,36 @@ public class cadastroVIEW extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
+        
         ProdutosDTO produto = new ProdutosDTO();
+                
+       if(cadastroNome.getText().isEmpty() || cadastroValor.getText().isEmpty())
+       {
+           JOptionPane.showMessageDialog(null,"Você precisa inserir todos os dados");
+       }
+       else
+       {
+                    
+               
+        
         String nome = cadastroNome.getText();
         String valor = cadastroValor.getText();
         String status = "A Venda";
+        
         produto.setNome(nome);
         produto.setValor(Integer.parseInt(valor));
         produto.setStatus(status);
         
-        ProdutosDAO produtodao = new ProdutosDAO();
-        produtodao.cadastrarProduto(produto);
+        ProdutosDAO prod = new ProdutosDAO();
         
+      
+        
+        prod.conexaoMySQL();
+        prod.cadastrarProduto(produto);
+        prod.fecharConexao();
+        
+       }
+      
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
