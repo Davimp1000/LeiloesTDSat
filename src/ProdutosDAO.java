@@ -193,6 +193,44 @@ try {
    
     
     
+    
+    
+    
+    //MÉTODO DE VENDER PRODUTO E ATUALIZAR O STATUS DELE
+    public void vender(ProdutosDTO produto)
+    {
+         PreparedStatement ps = null;
+       
+       
+        
+        String sql = "update produtos set status = 'Vendido' where id = ?";
+        
+        try
+        {
+              ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, produto.getId());
+            
+             
+            ps.executeUpdate();
+              
+            JOptionPane.showMessageDialog(null,"VENDA REALIZADA!");
+        }
+        catch(SQLException sqle)
+        {
+            JOptionPane.showMessageDialog(null,"NÃO CONSEGUIMOS REALIZAR A VENDA");
+        }
+           
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
 }
 
