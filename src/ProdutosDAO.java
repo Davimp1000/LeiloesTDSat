@@ -229,6 +229,43 @@ try {
     
     
     
+    //MÉTODO DE LISTAR PRODUTOS VENDIDOS
+    public void listarVendidos()
+    {
+         String sql = "select*from produtos where status = 'Vendido'";
+         
+         try
+         {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            
+          
+              while(rs.next())
+              {
+              int id =     rs.getInt("id");
+              String nome =    rs.getString("nome");
+              int valor =    rs.getInt("valor");
+              String status =    rs.getString("status");
+                        
+
+              }
+         }
+         catch(SQLException ex)
+         {
+              JOptionPane.showMessageDialog(null,"Ocorreu um erro");
+         }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
         
